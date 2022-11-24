@@ -33,7 +33,7 @@
             <div class="card">
               <div class="card-header">
                 <div class="d-flex">
-                  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_admin"><i class="bi bi-plus-circle"></i> Add</button> -->
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_admin"><i class="bi bi-plus-circle"></i> Add</button>
                   <span class="text-white">g</span>
                   <?php if(isset($_SESSION['success'])) { ?> 
                       <h3 class="alert card-title position-absolute py-2 alert-success rounded p-1" role="alert" style="right: 20px; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"><?php echo $_SESSION['success']; ?></h3>

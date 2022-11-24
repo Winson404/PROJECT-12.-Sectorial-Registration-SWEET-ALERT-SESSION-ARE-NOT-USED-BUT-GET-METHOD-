@@ -8,8 +8,6 @@
   } else {
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,10 +18,8 @@
   <title>Sectorial Registration for MSWD</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
   <!-- Favicons -->
   <link href="images/download.png" rel="icon">
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -39,45 +35,24 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Template Main CSS File -->
   <link href="assets-homepage/css/style.css" rel="stylesheet">
 </head>
 
 <body>
 
-  <!-- ======= Top Bar ======= -->
-  <!-- <div id="topbar" class="d-flex align-items-center fixed-top">
-    <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
-      <div class="align-items-center d-none d-md-flex">
-        <i class="bi bi-clock"></i> Monday - Saturday, 8AM to 10PM
-      </div>
-      <div class="d-flex align-items-center">
-        <i class="bi bi-phone"></i> Call us now +1 5589 55488 55
-      </div>
-    </div>
-  </div> -->
-
-  <!-- ======= Header ======= -->
   <header id="header">
-  <!-- <header id="header" class="fixed-top"> -->
     <div class="container d-flex align-items-center">
-
       <a href="index.html" class="logo me-auto"><img src="images/download.png" alt="" > Sectorial Registration for MSWD</a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
-
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          
           <!-- <li><a class="nav-link scrollto" href="register.php">Registration</a></li> -->
           <!-- <li><a class="nav-link scrollto" href="index.php?#contact">Contact</a></li> -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
+      </nav>
       <!-- <a type="button" class="appointment-btn scrollto" data-bs-toggle="modal" data-bs-target="#memberlogin"><span class="d-none d-md-inline">Login</span></a> -->
-
     </div>
   </header><!-- End Header -->
 

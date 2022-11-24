@@ -23,3 +23,39 @@
   </div>
 </div>
 <!-- ****************************************************END DELETE*********************************************************************** -->
+
+
+
+
+
+
+
+
+
+<!-- ****************************************************DELETE*********************************************************************** -->
+<!-- Modal -->
+<div class="modal fade" id="deleteaccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+       <div class="modal-header alert-light">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-user-large"></i> Delete account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fa-solid fa-circle-xmark"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="process_delete.php" method="POST">
+          <input type="hidden" class="form-control" value="<?php echo $row['household_Id']; ?>" name="household_Id">
+          <h4 class="text-center mt-3">Delete account?</h4>
+          <small style="margin-left: 150px;">This action can not be undone.</small>
+          
+      </div>
+      <div class="modal-footer alert-light">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary" name="delete_account">Submit</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+<!-- ****************************************************END DELETE*********************************************************************** -->

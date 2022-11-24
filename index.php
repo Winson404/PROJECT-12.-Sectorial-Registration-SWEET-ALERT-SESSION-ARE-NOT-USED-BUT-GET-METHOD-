@@ -81,9 +81,6 @@
               </select>
               <input type="text" class="form-control hidden" placeholder="Type of Disabilities" name="typeofdisabilities" id="typeofdisabilities">
             </div>
-            
-
-            
 
 
             <div class="col-md-12 form-group mt-3">

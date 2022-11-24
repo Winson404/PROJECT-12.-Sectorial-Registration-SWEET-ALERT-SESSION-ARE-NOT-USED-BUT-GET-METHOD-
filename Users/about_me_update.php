@@ -125,22 +125,19 @@
               <input type="number" class="form-control"  placeholder="Age" name="age" required value="<?php echo $row['age']; ?>">
             </div>
             <div class="col-md-2 form-group">
-               <?php                           
-                  $gender  = mysqli_query($conn, "SELECT DISTINCT gender FROM household_head");
-                  $id = $_GET['household_Id'];
-                  $all_gender = mysqli_query($conn, "SELECT * FROM household_head  where household_Id = '$id' ");
-                  $row = mysqli_fetch_array($all_gender);
-              ?>
               <label>Gender</label>
               <select class="custom-select" name="gender" required>
-                  <?php foreach($gender as $rows):?>
-                        <option value="<?php echo $rows['gender']; ?>"  
-                            <?php if($row['gender'] == $rows['gender']) echo 'selected="selected"'; ?> 
-                             > <!--/////   CLOSING OPTION TAG  -->
-                            <?php echo $rows['gender']; ?>                                           
-                        </option>
-
-                 <?php endforeach;?>
+                 <?php if($row['gender'] == 'Male'): ?>
+                        <option value="<?php echo $row['gender']; ?>" selected><?php echo $row['gender']; ?>  </option>
+                        <option value="Female">Female</option>
+                   <?php elseif($row['gender'] == 'Female'): ?>
+                        <option value="Male">Male</option>
+                        <option value="<?php echo $row['gender']; ?>" selected><?php echo $row['gender']; ?>  </option>
+                   <?php else: ?>
+                        <option selected disabled>Select gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                  <?php endif; ?>
                </select> 
             </div>
             <div class="col-md-5 form-group">
@@ -148,59 +145,148 @@
               <input type="text" class="form-control"  placeholder="Place of birth" name="placeofbirth" required value="<?php echo $row['place_of_birth']; ?>">
             </div>
             <div class="col-md-4 form-group">
-              <?php                           
-                  $status  = mysqli_query($conn, "SELECT DISTINCT status FROM household_head");
-                  $id = $_GET['household_Id'];
-                  $all_status = mysqli_query($conn, "SELECT * FROM household_head  where household_Id = '$id' ");
-                  $row = mysqli_fetch_array($all_status);
-              ?>
               <label>Civil Status</label>
-              <select class="custom-select" name="civilstatus" required>
-                  <?php foreach($status as $rows):?>
-                        <option value="<?php echo $rows['status']; ?>"  
-                            <?php if($row['gender'] == $rows['status']) echo 'selected="selected"'; ?> 
-                             > <!--/////   CLOSING OPTION TAG  -->
-                            <?php echo $rows['status']; ?>                                           
-                        </option>
-                 <?php endforeach;?>
-               </select> 
+               <select class="custom-select" name="civilstatus" required >
+                  <?php if($row['status'] == 'Single'): ?>
+                        <option value="<?php echo $row['status']; ?>" selected><?php echo $row['status']; ?>  </option>
+                        <option value="Married">Married</option>
+                        <option value="Divorced">Divorced</option>
+                        <option value="Widowed">Widowed</option>
+                   <?php elseif($row['status'] == 'Married'): ?>
+                        <option value="Single">Single</option>
+                        <option value="<?php echo $row['status']; ?>" selected><?php echo $row['status']; ?>  </option>
+                        <option value="Divorced">Divorced</option>
+                        <option value="Widowed">Widowed</option>
+                   <?php elseif($row['status'] == 'Divorced'): ?>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                        <option value="<?php echo $row['status']; ?>" selected><?php echo $row['status']; ?>  </option>
+                        <option value="Widowed">Widowed</option>
+                   <?php elseif($row['status'] == 'Widowed'): ?>
+                        <option value="Single">Single</option>
+                        <option value="Divorced">Married</option>
+                        <option value="Divorced">Divorced</option>
+                        <option value="<?php echo $row['status']; ?>" selected><?php echo $row['status']; ?>  </option>
+                   <?php else: ?>
+                        <option selected disabled>Select status</option>
+                        <option value="Single">Single</option>
+                        <option value="Divorced">Married</option>
+                        <option value="Divorced">Divorced</option>
+                        <option value="Widowed">Widowed</option>
+                  <?php endif; ?>
+               </select>  
             </div>
             
             <div class="col-md-4 form-group">
-              <?php                           
-                  $educational_attainment  = mysqli_query($conn, "SELECT DISTINCT educational_attainment FROM household_head");
-                  $id = $_GET['household_Id'];
-                  $all_educational_attainment = mysqli_query($conn, "SELECT * FROM household_head  where household_Id = '$id' ");
-                  $row = mysqli_fetch_array($all_educational_attainment);
-              ?>
               <label>Educational Attainment</label>
               <select class="custom-select" name="educationalattainment" required>
-                  <?php foreach($educational_attainment as $rows):?>
-                        <option value="<?php echo $rows['educational_attainment']; ?>"  
-                            <?php if($row['gender'] == $rows['educational_attainment']) echo 'selected="selected"'; ?> 
-                             > <!--/////   CLOSING OPTION TAG  -->
-                            <?php echo $rows['educational_attainment']; ?>                                           
-                        </option>
-                 <?php endforeach;?>
+                  <?php if($row['educational_attainment'] == 'Elementary level'): ?>
+                        <option value="<?php echo $row['educational_attainment']; ?>" selected><?php echo $row['educational_attainment']; ?>  </option>
+                        <option value="Elementary Graduate">Elementary Graduate</option>
+                        <option value="High School Level">High School Level</option>
+                        <option value="High School Graduate">High School Graduate</option>
+                        <option value="College Level">College Level</option>
+                        <option value="College Graduate">College Graduate</option>
+                        <option value="Technical Vocational">Technical Vocational</option>
+                        <option value="Masterate in Graduate School and Doctorate in Post Graduate Studies">Masterate in Graduate School and Doctorate in Post Graduate Studies</option>
+                   <?php elseif($row['educational_attainment'] == 'Elementary Graduate'): ?>
+                        <option value="Elementary Level">Elementary Level</option>
+                        <option value="<?php echo $row['educational_attainment']; ?>" selected><?php echo $row['educational_attainment']; ?>  </option>
+                        <option value="High School Level">High School Level</option>
+                        <option value="High School Graduate">High School Graduate</option>
+                        <option value="College Level">College Level</option>
+                        <option value="College Graduate">College Graduate</option>
+                        <option value="Technical Vocational">Technical Vocational</option>
+                        <option value="Masterate in Graduate School and Doctorate in Post Graduate Studies">Masterate in Graduate School and Doctorate in Post Graduate Studies</option>
+                   <?php elseif($row['educational_attainment'] == 'High School Level'): ?>
+                        <option value="Elementary Level">Elementary Level</option>
+                        <option value="HElementary Graduate">Elementary Graduate</option>
+                        <option value="<?php echo $row['educational_attainment']; ?>" selected><?php echo $row['educational_attainment']; ?>  </option>
+                        <option value="High School Graduate">High School Graduate</option>
+                        <option value="College Level">College Level</option>
+                        <option value="College Graduate">College Graduate</option>
+                        <option value="Technical Vocational">Technical Vocational</option>
+                        <option value="Masterate in Graduate School and Doctorate in Post Graduate Studies">Masterate in Graduate School and Doctorate in Post Graduate Studies</option>
+                   <?php elseif($row['educational_attainment'] == 'High School Graduate'): ?>
+                        <option value="Elementary Level">Elementary Level</option>
+                        <option value="HElementary Graduate">Elementary Graduate</option>
+                        <option value="High School Level">High School Level</option>
+                        <option value="<?php echo $row['educational_attainment']; ?>" selected><?php echo $row['educational_attainment']; ?>  </option>
+                        <option value="College Level">College Level</option>
+                        <option value="College Graduate">College Graduate</option>
+                        <option value="Technical Vocational">Technical Vocational</option>
+                        <option value="Masterate in Graduate School and Doctorate in Post Graduate Studies">Masterate in Graduate School and Doctorate in Post Graduate Studies</option>
+                  <?php elseif($row['educational_attainment'] == 'College Level'): ?>
+                        <option value="Elementary Level">Elementary Level</option>
+                        <option value="HElementary Graduate">Elementary Graduate</option>
+                        <option value="High School Level">High School Level</option>
+                        <option value="High School Graduate">High School Graduate</option>
+                        <option value="<?php echo $row['educational_attainment']; ?>" selected><?php echo $row['educational_attainment']; ?>  </option>
+                        <option value="College Graduate">College Graduate</option>
+                        <option value="Technical Vocational">Technical Vocational</option>
+                        <option value="Masterate in Graduate School and Doctorate in Post Graduate Studies">Masterate in Graduate School and Doctorate in Post Graduate Studies</option>
+                  <?php elseif($row['educational_attainment'] == 'College Graduate'): ?>
+                        <option value="Elementary Level">Elementary Level</option>
+                        <option value="HElementary Graduate">Elementary Graduate</option>
+                        <option value="High School Level">High School Level</option>
+                        <option value="High School Graduate">High School Graduate</option>
+                        <option value="College Level">College Level</option>
+                        <option value="<?php echo $row['educational_attainment']; ?>" selected><?php echo $row['educational_attainment']; ?>  </option>
+                        <option value="Technical Vocational">Technical Vocational</option>
+                        <option value="Masterate in Graduate School and Doctorate in Post Graduate Studies">Masterate in Graduate School and Doctorate in Post Graduate Studies</option>
+                  <?php elseif($row['educational_attainment'] == 'Technical Vocational'): ?>
+                        <option value="Elementary Level">Elementary Level</option>
+                        <option value="HElementary Graduate">Elementary Graduate</option>
+                        <option value="High School Level">High School Level</option>
+                        <option value="High School Graduate">High School Graduate</option>
+                        <option value="College Level">College Level</option>
+                        <option value="College Graduate">College Graduate</option>
+                        <option value="<?php echo $row['educational_attainment']; ?>" selected><?php echo $row['educational_attainment']; ?>  </option>
+                        <option value="Masterate in Graduate School and Doctorate in Post Graduate Studies">Masterate in Graduate School and Doctorate in Post Graduate Studies</option>
+                  <?php elseif($row['educational_attainment'] == 'Masterate in Graduate School and Doctorate in Post Graduate Studies'): ?>
+                        <option value="Elementary Level">Elementary Level</option>
+                        <option value="HElementary Graduate">Elementary Graduate</option>
+                        <option value="High School Level">High School Level</option>
+                        <option value="High School Graduate">High School Graduate</option>
+                        <option value="College Level">College Level</option>
+                        <option value="College Graduate">College Graduate</option>
+                        <option value="Technical Vocational">Technical Vocational</option>
+                        <option value="<?php echo $row['educational_attainment']; ?>" selected><?php echo $row['educational_attainment']; ?>  </option>
+                   <?php else: ?>
+                        <option selected disabled>Select education attainment</option>
+                        <option value="Elementary Level">Elementary Level</option>
+                        <option value="HElementary Graduate">Elementary Graduate</option>
+                        <option value="High School Level">High School Level</option>
+                        <option value="High School Graduate">High School Graduate</option>
+                        <option value="College Level">College Level</option>
+                        <option value="College Graduate">College Graduate</option>
+                        <option value="Technical Vocational">Technical Vocational</option>
+                        <option value="Masterate in Graduate School and Doctorate in Post Graduate Studies">Masterate in Graduate School and Doctorate in Post Graduate Studies</option>
+                  <?php endif; ?>
                </select> 
 
             </div>
             <div class="col-md-4 form-group">
-              <?php                           
-                  $employment_status  = mysqli_query($conn, "SELECT DISTINCT employment_status FROM household_head");
-                  $id = $_GET['household_Id'];
-                  $all_employment_status = mysqli_query($conn, "SELECT * FROM household_head  where household_Id = '$id' ");
-                  $row = mysqli_fetch_array($all_employment_status);
-              ?>
               <label>Employment Status</label>
               <select class="custom-select" name="workstatus" required>
-                  <?php foreach($employment_status as $rows):?>
-                        <option value="<?php echo $rows['employment_status']; ?>"  
-                            <?php if($row['gender'] == $rows['employment_status']) echo 'selected="selected"'; ?> 
-                             > <!--/////   CLOSING OPTION TAG  -->
-                            <?php echo $rows['employment_status']; ?>                                           
-                        </option>
-                 <?php endforeach;?>
+                  <?php if($row['employment_status'] == 'Employed'): ?>
+                        <option value="<?php echo $row['employment_status']; ?>" selected><?php echo $row['employment_status']; ?>  </option>
+                        <option value="Unemployed">Unemployed</option>
+                        <option value="Self-employed">Self-employed</option>
+                   <?php elseif($row['employment_status'] == 'Unemployed'): ?>
+                        <option value="Employed">Employed</option>
+                        <option value="<?php echo $row['employment_status']; ?>" selected><?php echo $row['employment_status']; ?>  </option>
+                        <option value="Self-employed">Self-employed</option>
+                   <?php elseif($row['employment_status'] == 'Self-employed'): ?>
+                        <option value="Employed">Employed</option>
+                        <option value="Unemployed">Unemployed</option>
+                        <option value="<?php echo $row['employment_status']; ?>" selected><?php echo $row['employment_status']; ?>  </option>
+                   <?php else: ?>
+                        <option selected disabled>Select employment status</option>
+                        <option value="Employed">Employed</option>
+                        <option value="Unemployed">Unemployed</option>
+                        <option value="Self-employed">Self-employed</option>
+                  <?php endif; ?>
                </select>
             </div>
             <style> 
@@ -216,21 +302,119 @@
               <input type="text" class="form-control"  placeholder="Work name" name="workname" id="workname" value="<?php echo $row['work_name']; ?>">
             </div>
             <div class="col-md-3 form-group">
-              <?php                           
-                  $type_of_work  = mysqli_query($conn, "SELECT DISTINCT type_of_work FROM household_head");
-                  $id = $_GET['household_Id'];
-                  $all_type_of_work = mysqli_query($conn, "SELECT * FROM household_head  where household_Id = '$id' ");
-                  $row = mysqli_fetch_array($all_type_of_work);
-              ?>
               <label>Type of Work</label>
               <select class="custom-select" name="worktype" required>
-                  <?php foreach($type_of_work as $rows):?>
-                        <option value="<?php echo $rows['type_of_work']; ?>"  
-                            <?php if($row['gender'] == $rows['type_of_work']) echo 'selected="selected"'; ?> 
-                             > <!--/////   CLOSING OPTION TAG  -->
-                            <?php echo $rows['type_of_work']; ?>                                           
-                        </option>
-                 <?php endforeach;?>
+                  <?php if($row['type_of_work'] == 'Permanent'): ?>
+                        <option value="<?php echo $row['type_of_work']; ?>" selected><?php echo $row['type_of_work']; ?>  </option>
+                        <option value="Contractual">Contractual</option>
+                        <option value="Emergency">Emergency</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Seasonal">Seasonal</option>
+                        <option value="Housewife">Housewife</option>
+                        <option value="Business owner">Business owner</option>
+                        <option value="Job Order">Job Order</option>
+                        <option value="Others">Others</option>
+
+                   <?php elseif($row['type_of_work'] == 'Contractual'): ?>
+                        <option value="Permanent">Permanent</option>
+                        <option value="<?php echo $row['type_of_work']; ?>" selected><?php echo $row['type_of_work']; ?>  </option>
+                        <option value="Emergency">Emergency</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Seasonal">Seasonal</option>
+                        <option value="Housewife">Housewife</option>
+                        <option value="Business owner">Business owner</option>
+                        <option value="Job Order">Job Order</option>
+                        <option value="Others">Others</option>
+                   
+                   <?php elseif($row['type_of_work'] == 'Emergency'): ?>
+                        <option value="Permanent">Permanent</option>
+                        <option value="Contractual">Contractual</option>
+                        <option value="<?php echo $row['type_of_work']; ?>" selected><?php echo $row['type_of_work']; ?>  </option>
+                        <option value="Casual">Casual</option>
+                        <option value="Seasonal">Seasonal</option>
+                        <option value="Housewife">Housewife</option>
+                        <option value="Business owner">Business owner</option>
+                        <option value="Job Order">Job Order</option>
+                        <option value="Others">Others</option>
+
+                  <?php elseif($row['type_of_work'] == 'Casual'): ?>
+                        <option value="Permanent">Permanent</option>
+                        <option value="Contractual">Contractual</option>
+                        <option value="Emergency">Emergency</option>
+                        <option value="<?php echo $row['type_of_work']; ?>" selected><?php echo $row['type_of_work']; ?>  </option>
+                        <option value="Seasonal">Seasonal</option>
+                        <option value="Housewife">Housewife</option>
+                        <option value="Business owner">Business owner</option>
+                        <option value="Job Order">Job Order</option>
+                        <option value="Others">Others</option>
+
+                  <?php elseif($row['type_of_work'] == 'Seasonal'): ?>
+                        <option value="Permanent">Permanent</option>
+                        <option value="Contractual">Contractual</option>
+                        <option value="Emergency">Emergency</option>
+                        <option value="Casual">Casual</option>
+                        <option value="<?php echo $row['type_of_work']; ?>" selected><?php echo $row['type_of_work']; ?>  </option>
+                        <option value="Housewife">Housewife</option>
+                        <option value="Business owner">Business owner</option>
+                        <option value="Job Order">Job Order</option>
+                        <option value="Others">Others</option>
+
+                  <?php elseif($row['type_of_work'] == 'Housewife'): ?>
+                        <option value="Permanent">Permanent</option>
+                        <option value="Contractual">Contractual</option>
+                        <option value="Emergency">Emergency</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Seasonal">Seasonal</option>
+                        <option value="<?php echo $row['type_of_work']; ?>" selected><?php echo $row['type_of_work']; ?>  </option>
+                        <option value="Business owner">Business owner</option>
+                        <option value="Job Order">Job Order</option>
+                        <option value="Others">Others</option>
+
+                  <?php elseif($row['type_of_work'] == 'Business owner'): ?>
+                        <option value="Permanent">Permanent</option>
+                        <option value="Contractual">Contractual</option>
+                        <option value="Emergency">Emergency</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Seasonal">Seasonal</option>
+                        <option value="Housewife">Housewife</option>
+                        <option value="<?php echo $row['type_of_work']; ?>" selected><?php echo $row['type_of_work']; ?>  </option>
+                        <option value="Job Order">Job Order</option>
+                        <option value="Others">Others</option>
+
+                  <?php elseif($row['type_of_work'] == 'Job Order'): ?>
+                        <option value="Permanent">Permanent</option>
+                        <option value="Contractual">Contractual</option>
+                        <option value="Emergency">Emergency</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Seasonal">Seasonal</option>
+                        <option value="Housewife">Housewife</option>
+                        <option value="Business owner">Business owner</option>
+                        <option value="<?php echo $row['type_of_work']; ?>" selected><?php echo $row['type_of_work']; ?>  </option>
+                        <option value="Others">Others</option>
+
+                  <?php elseif($row['type_of_work'] == 'Others'): ?>
+                        <option value="Permanent">Permanent</option>
+                        <option value="Contractual">Contractual</option>
+                        <option value="Emergency">Emergency</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Seasonal">Seasonal</option>
+                        <option value="Housewife">Housewife</option>
+                        <option value="Business owner">Business owner</option>
+                        <option value="Job Order">Job Order</option>
+                        <option value="<?php echo $row['type_of_work']; ?>" selected><?php echo $row['type_of_work']; ?>  </option>
+
+                   <?php else: ?>
+                        <option selected value="N/A">Type of Work</option>
+                        <option value="Permanent">Permanent</option>
+                        <option value="Contractual">Contractual</option>
+                        <option value="Emergency">Emergency</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Seasonal">Seasonal</option>
+                        <option value="Housewife">Housewife</option>
+                        <option value="Business owner">Business owner</option>
+                        <option value="Job Order">Job Order</option>
+                        <option value="Others">Others</option>
+                  <?php endif; ?>
                </select>
             </div>
             <div class="col-md-3 form-group">
@@ -246,39 +430,101 @@
               <input type="text" class="form-control"  placeholder="Religion" name="religion" required value="<?php echo $row['religion']; ?>">
             </div>
             <div class="col-md-4 form-group">
-              <?php                           
-                  $part_of_tribe  = mysqli_query($conn, "SELECT DISTINCT part_of_tribe FROM household_head");
-                  $id = $_GET['household_Id'];
-                  $all_part_of_tribe = mysqli_query($conn, "SELECT * FROM household_head  where household_Id = '$id' ");
-                  $row = mysqli_fetch_array($all_part_of_tribe);
-              ?>
               <label>Part of Any Tribe?</label>
               <select class="custom-select" name="tribe" required>
-                  <?php foreach($part_of_tribe as $rows):?>
-                        <option value="<?php echo $rows['part_of_tribe']; ?>"  
-                            <?php if($row['gender'] == $rows['part_of_tribe']) echo 'selected="selected"'; ?> 
-                             > <!--/////   CLOSING OPTION TAG  -->
-                            <?php echo $rows['part_of_tribe']; ?>                                           
-                        </option>
-                 <?php endforeach;?>
+                  <?php if($row['part_of_tribe'] == 'Yes'): ?>
+                        <option value="<?php echo $row['part_of_tribe']; ?>" selected><?php echo $row['part_of_tribe']; ?>  </option>
+                        <option value="No">No</option>
+
+                   <?php elseif($row['part_of_tribe'] == 'No'): ?>
+                        <option value="Yes">Yes</option>
+                        <option value="<?php echo $row['part_of_tribe']; ?>" selected><?php echo $row['part_of_tribe']; ?>  </option>
+                        
+                  <?php else: ?>
+                        <option selected disabled>Select only one</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+
+                  <?php endif; ?>
                </select>
             </div>
             <div class="col-md-4 form-group">
-              <?php                           
-                  $program_services  = mysqli_query($conn, "SELECT DISTINCT program_services FROM household_head");
-                  $id = $_GET['household_Id'];
-                  $all_program_services = mysqli_query($conn, "SELECT * FROM household_head  where household_Id = '$id' ");
-                  $row = mysqli_fetch_array($all_program_services);
-              ?>
               <label>Program and Services benefited</label>
               <select class="custom-select" name="programservices" required>
-                  <?php foreach($program_services as $rows):?>
-                        <option value="<?php echo $rows['program_services']; ?>"  
-                            <?php if($row['gender'] == $rows['program_services']) echo 'selected="selected"'; ?> 
-                             > <!--/////   CLOSING OPTION TAG  -->
-                            <?php echo $rows['program_services']; ?>                                           
-                        </option>
-                 <?php endforeach;?>
+                   <?php if($row['program_services'] == 'Educational Assistance'): ?>
+                        <option value="<?php echo $row['program_services']; ?>" selected><?php echo $row['program_services']; ?>  </option>
+                        <option value="ECCD">ECCD</option>
+                        <option value="Scholarship">Scholarship</option>
+                        <option value="4Ps">4Ps</option>
+                        <option value="Econonic Training">Econonic Training</option>
+                        <option value="Medical Assistance">Medical Assistance</option>
+                        <option value="Others">Others</option>
+
+                   <?php elseif($row['program_services'] == 'ECCD'): ?>
+                        <option value="Educational Assistance">Educational Assistance</option>
+                        <option value="<?php echo $row['program_services']; ?>" selected><?php echo $row['program_services']; ?>  </option>
+                        <option value="Scholarship">Scholarship</option>
+                        <option value="4Ps">4Ps</option>
+                        <option value="Econonic Training">Econonic Training</option>
+                        <option value="Medical Assistance">Medical Assistance</option>
+                        <option value="Others">Others</option>
+
+                   <?php elseif($row['program_services'] == 'Scholarship'): ?>
+                        <option value="Educational Assistance">Educational Assistance</option>
+                        <option value="ECCD">ECCD</option>
+                        <option value="<?php echo $row['program_services']; ?>" selected><?php echo $row['program_services']; ?>  </option>
+                        <option value="4Ps">4Ps</option>
+                        <option value="Econonic Training">Econonic Training</option>
+                        <option value="Medical Assistance">Medical Assistance</option>
+                        <option value="Others">Others</option>
+
+                   <?php elseif($row['program_services'] == '4Ps'): ?>
+                        <option value="Educational Assistance">Educational Assistance</option>
+                        <option value="ECCD">ECCD</option>
+                        <option value="Scholarship">Scholarship</option>
+                        <option value="<?php echo $row['program_services']; ?>" selected><?php echo $row['program_services']; ?>  </option>
+                        <option value="Econonic Training">Econonic Training</option>
+                        <option value="Medical Assistance">Medical Assistance</option>
+                        <option value="Others">Others</option>
+
+                   <?php elseif($row['program_services'] == 'Econonic Training'): ?>
+                        <option value="Educational Assistance">Educational Assistance</option>
+                        <option value="ECCD">ECCD</option>
+                        <option value="Scholarship">Scholarship</option>
+                        <option value="4Ps">4Ps</option>
+                        <option value="<?php echo $row['program_services']; ?>" selected><?php echo $row['program_services']; ?>  </option>
+                        <option value="Medical Assistance">Medical Assistance</option>
+                        <option value="Others">Others</option>
+
+                   <?php elseif($row['program_services'] == 'Medical Assistance'): ?>
+                        <option value="Educational Assistance">Educational Assistance</option>
+                        <option value="ECCD">ECCD</option>
+                        <option value="4Ps">4Ps</option>
+                        <option value="Scholarship">Scholarship</option>
+                        <option value="Econonic Training">Econonic Training</option>
+                        <option value="<?php echo $row['program_services']; ?>" selected><?php echo $row['program_services']; ?>  </option>
+                        <option value="Others">Others</option>
+
+                   <?php elseif($row['program_services'] == 'Others'): ?>
+                        <option value="Educational Assistance">Educational Assistance</option>
+                        <option value="ECCD">ECCD</option>
+                        <option value="4Ps">4Ps</option>
+                        <option value="Scholarship">Scholarship</option>
+                        <option value="Econonic Training">Econonic Training</option>
+                        <option value="Medical Assistance">Medical Assistance</option>
+                        <option value="<?php echo $row['program_services']; ?>" selected><?php echo $row['program_services']; ?>  </option>
+
+                  <?php else: ?>
+                        <option selected disabled>Select program and services</option>
+                        <option value="Educational Assistance">Educational Assistance</option>
+                        <option value="ECCD">ECCD</option>
+                        <option value="4Ps">4Ps</option>
+                        <option value="Scholarship">Scholarship</option>
+                        <option value="Econonic Training">Econonic Training</option>
+                        <option value="Medical Assistance">Medical Assistance</option>
+                        <option value="Others">Others</option>
+
+                  <?php endif; ?>
                </select>
             </div>
             <div class="col-md-3 form-group">
@@ -290,21 +536,52 @@
               <input type="text" class="form-control"  placeholder="Assets/Properties" name="properties" required value="<?php echo $row['assets']; ?>">
             </div>
             <div class="col-md-4 form-group">
-              <?php                           
-                  $living_with  = mysqli_query($conn, "SELECT DISTINCT living_with FROM household_head");
-                  $id = $_GET['household_Id'];
-                  $all_living_with = mysqli_query($conn, "SELECT * FROM household_head  where household_Id = '$id' ");
-                  $row = mysqli_fetch_array($all_living_with);
-              ?>
               <label>Living with</label>
               <select class="custom-select" name="livingwith" required>
-                  <?php foreach($living_with as $rows):?>
-                        <option value="<?php echo $rows['living_with']; ?>"  
-                            <?php if($row['gender'] == $rows['living_with']) echo 'selected="selected"'; ?> 
-                             > <!--/////   CLOSING OPTION TAG  -->
-                            <?php echo $rows['living_with']; ?>                                           
-                        </option>
-                 <?php endforeach;?>
+                  <?php if($row['living_with'] == 'Owned house'): ?>
+                        <option value="<?php echo $row['living_with']; ?>" selected><?php echo $row['living_with']; ?>  </option>
+                        <option value="Siblings">Siblings</option>
+                        <option value="Parents">Parents</option>
+                        <option value="Relative">Relative</option>
+                        <option value="Mother-in-Law">Mother-in-Law</option>
+
+                   <?php elseif($row['living_with'] == 'Siblings'): ?>
+                        <option value="Owned house">Owned house</option>
+                        <option value="<?php echo $row['living_with']; ?>" selected><?php echo $row['living_with']; ?>  </option>
+                        <option value="Parents">Parents</option>
+                        <option value="Relative">Relative</option>
+                        <option value="Mother-in-Law">Mother-in-Law</option>
+
+                  <?php elseif($row['living_with'] == 'Parents'): ?>
+                        <option value="Owned house">Owned house</option>
+                        <option value="Siblings">Siblings</option>
+                        <option value="<?php echo $row['living_with']; ?>" selected><?php echo $row['living_with']; ?>  </option>
+                        <option value="Relative">Relative</option>
+                        <option value="Mother-in-Law">Mother-in-Law</option>
+
+                  <?php elseif($row['living_with'] == 'Relative'): ?>
+                        <option value="Owned house">Owned house</option>
+                        <option value="Siblings">Siblings</option>
+                        <option value="Parents">Parents</option>
+                        <option value="<?php echo $row['living_with']; ?>" selected><?php echo $row['living_with']; ?>  </option>
+                        <option value="Mother-in-Law">Mother-in-Law</option>
+
+                  <?php elseif($row['living_with'] == 'Mother-in-Law'): ?>
+                        <option value="Owned house">Owned house</option>
+                        <option value="Siblings">Siblings</option>
+                        <option value="Parents">Parents</option>
+                        <option value="Relative">Relative</option>
+                        <option value="<?php echo $row['living_with']; ?>" selected><?php echo $row['living_with']; ?>  </option>
+                        
+                  <?php else: ?>
+                        <option selected disabled>Select only one</option>
+                        <option value="Owned house">Owned house</option>
+                        <option value="Siblings">Siblings</option>
+                        <option value="Parents">Parents</option>
+                        <option value="Relative">Relative</option>
+                        <option value="Mother-in-Law">Mother-in-Law</option>
+                        
+                  <?php endif; ?>
                </select>
             </div>
             </div>

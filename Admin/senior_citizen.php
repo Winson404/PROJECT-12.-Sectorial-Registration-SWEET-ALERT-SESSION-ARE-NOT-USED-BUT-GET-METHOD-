@@ -60,13 +60,14 @@
                     <th>Contact</th>
                     <th>Categories</th>
                     <th>Application type</th>
+                    <th>Approve / Declined</th>
                     <th>Tools</th>
                   </tr>
                   </thead>
                   <tbody id="users_data">
                     <tr>
                       <?php 
-                        $sql = mysqli_query($conn, "SELECT * FROM household_head WHERE sectorial_registration LIKE 'Senior Citizen,'");
+                        $sql = mysqli_query($conn, "SELECT * FROM household_head WHERE sectorial_registration LIKE 'Senior Citizens,' AND action='Restore' AND account_status='Approved'");
                         while ($row = mysqli_fetch_array($sql)) {
                       ?>
                        
@@ -75,14 +76,28 @@
                         <td><?php echo $row['causeofbeingsoloparent']; ?></td>
                         <td><?php echo str_replace(',', '', $row['application_type']); ?></td>
                         <td>
-                            <div class="dropdown dropleft">
-                                  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false"> Actions </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#view<?php echo $row['household_Id']; ?>">View</button>
-                                      <a href="senior_citizen_update.php?household_Id=<?php echo $row['household_Id']; ?>" class="btn btn-primary dropdown-item">Update</a>
-                                      <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#delete<?php echo $row['household_Id']; ?>">Delete</button>
-                                </div>
-                            </div>
+
+                          <?php if($row['account_status'] == 'Pending'): ?>
+                          <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#approve<?php echo $row['household_Id']; ?>"><i class="fa-solid fa-thumbs-up"></i></button>
+                          \
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declined<?php echo $row['household_Id']; ?>"><i class="fa-solid fa-thumbs-down"></i></button>
+                            
+                          <?php elseif($row['account_status'] == 'Approved'): ?>
+                              <span class="badge badge-primary rounded-pill"><?php echo $row['account_status']; ?></span>
+                          <?php else :?>  
+                              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#approve<?php echo $row['household_Id']; ?>"><i class="fa-solid fa-thumbs-up"></i></button>
+                          \
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#declined<?php echo $row['household_Id']; ?>"><i class="fa-solid fa-thumbs-down"></i></button>
+                          <?php endif; ?>
+                        </td>
+                        <td>
+                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#view<?php echo $row['household_Id']; ?>"><i class="fa-solid fa-eye"></i></button> -->
+                            <a href="senior_citizen_print.php?household_Id=<?php echo $row['household_Id']; ?>" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                            <a href="senior_citizen_update.php?household_Id=<?php echo $row['household_Id']; ?>" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?php //echo $row['household_Id']; ?>"><i class="fa-solid fa-trash-can"></i></button> -->
+                            <a href="senior_citizen_documents.php?household_Id=<?php echo $row['household_Id']; ?>" class="btn btn-info"><i class="fa-solid fa-file"></i></a>  
+                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#archive<?php echo $row['household_Id']; ?>"><i class="fa-solid fa-box-archive"></i></button> 
+
                         </td>  
                     </tr>
 
@@ -94,6 +109,7 @@
                         <th>Contact</th>
                         <th>Categories</th>
                         <th>Application type</th>
+                        <th>Approve / Declined</th>
                         <th>Tools</th>
                       </tr>
                   </tfoot>

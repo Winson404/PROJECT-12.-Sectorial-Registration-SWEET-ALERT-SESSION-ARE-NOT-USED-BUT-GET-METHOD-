@@ -6,6 +6,7 @@
     if(isset($_GET['household_Id'])) {
       $id = $_GET['household_Id'];
 
+
     // if(isset($_SESSION['household_Id'])) {
     //     $id = $_SESSION['household_Id'];
 
@@ -87,9 +88,9 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="dashboard.php" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="about_me.php?household_Id=<?php  echo $id; ?>" class="nav-link">About me</a>
-      </li>
+      <!-- <li class="nav-item d-none d-sm-inline-block">
+        <a href="about_me2.php?household_Id=<?php // echo $id; ?>" class="nav-link">About me</a>
+      </li> -->
     </ul>
 
     <!-- Right navbar links -->
@@ -144,6 +145,7 @@
       <?php 
         $fetch = mysqli_query($conn, "SELECT admin_reply_Id FROM admin_reply WHERE admin_household_Id='$id'");
         $row_msg = mysqli_num_rows($fetch);
+        
       ?>
 
       <!-- Notifications Dropdown Menu -->
@@ -203,6 +205,8 @@
     <?php 
         $admin = mysqli_query($conn, "SELECT * FROM household_head WHERE household_Id='$id'");
         $row = mysqli_fetch_array($admin);
+        $a   = $row['id_reference'];
+        $b   = explode(",", $a);
     ?>
     <!-- Sidebar -->
     <div class="sidebar">
@@ -231,8 +235,30 @@
           </li> -->
 
           <li class="nav-header">PROFILE</li>
+
+           <li class="nav-item">
+            <a href="status.php?household_Id=<?php  echo $id; ?>" class="nav-link">
+              <i class="fa-solid fa-hourglass-start"></i>
+              <p>
+                &nbsp;&nbsp; Account Status
+              </p>
+            </a>
+          </li>
+
+          <?php if($row['sectorial_registration'] == 'Solo Parent,'): ?>
+
           <li class="nav-item">
-            <a href="about_me.php?household_Id=<?php  echo $id; ?>" class="nav-link">
+            <a href="about_me2.php?household_Id=<?php  echo $id; ?>" class="nav-link">
+              <i class="fa-solid fa-user"></i>
+              <p>
+                &nbsp;&nbsp; About me
+              </p>
+            </a>
+          </li>
+        <?php elseif($row['sectorial_registration'] == 'Senior Citizens,'): ?>
+
+           <li class="nav-item">
+            <a href="about_me3.php?household_Id=<?php  echo $id; ?>" class="nav-link">
               <i class="fa-solid fa-user"></i>
               <p>
                 &nbsp;&nbsp; About me
@@ -240,24 +266,102 @@
             </a>
           </li>
 
+          <?php else: ?>
+
+           <li class="nav-item">
+            <a href="about_me4.php?household_Id=<?php  echo $id; ?>" class="nav-link">
+              <i class="fa-solid fa-user"></i>
+              <p>
+                &nbsp;&nbsp; About me
+              </p>
+            </a>
+          </li>
+        <?php endif; ?>
 
           <?php if($row['sectorial_registration'] == 'Solo Parent,'): ?>
 
             <li class="nav-header">FILE UPLOAD</li>
-            <li class="nav-item">
-              <a href="apply_solo_parent.php?household_Id=<?php  echo $id; ?>" class="nav-link">
+           <!--  <li class="nav-item">
+              <a href="apply_solo_parent.php?household_Id=<?php  //echo $id; ?>" class="nav-link">
                 <i class="fa-solid fa-file"></i>
                 <p>
                   &nbsp;&nbsp; Application for Solo Parent
                 </p>
               </a>
+            </li> -->
+
+            <li class="nav-item">
+              <a href="upload_ID.php?household_Id=<?php  echo $id; ?>" class="nav-link">
+                <i class="fa-solid fa-file"></i>
+                <p>
+                  &nbsp;&nbsp; Upload files
+                </p>
+              </a>
             </li>
 
-          <?php elseif($row['sectorial_registration'] == 'Senior Citizen,'): ?>
+
+
+
+          <li class="nav-item">
+            <a href="#" class="nav-link text-light">
+              <i class="fa-solid fa-file"></i>
+              <p>&nbsp;&nbsp; View uploaded documents<i class="fas fa-angle-left right"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="view_uploaded_ID2x2.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-id-card-clip"></i>
+                  <p>&nbsp;&nbsp; ID (2x2)</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="view_uploaded_Barangay_Certification.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-certificate"></i>
+                  <p>&nbsp;&nbsp; Certification of Residency</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="view_uploaded_Punong_Barangay.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-certificate"></i>
+                  <p>&nbsp;&nbsp; Certification for Solo Parent</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="view_uploaded_Walang_Kinakasama.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-certificate"></i>
+                  <p>&nbsp;&nbsp; Salaysay Na Ikaw Ay Walang Kinakasama</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="view_uploaded_Certificate_Ng_Anak.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-certificate"></i>
+                  <p>&nbsp;&nbsp; Kopya Ng Birth Certificate Ng Anak</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="view_uploaded_treasures_certification.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-certificate"></i>
+                  <p>&nbsp;&nbsp; Barangay Treasurer's Certification</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="view_uploaded_certificate_choices.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-certificate"></i>
+                  <p>&nbsp;&nbsp; Other certification</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+
+
+
+
+          <?php elseif($row['sectorial_registration'] == 'Senior Citizens,'): ?>
 
             <li class="nav-header">FILE UPLOAD</li>
-            <li class="nav-item">
-              <a href="apply_senior.php?household_Id=<?php  echo $id; ?>" class="nav-link">
+            <!-- <li class="nav-item">
+              <a href="apply_senior.php?household_Id=<?php  //echo $id; ?>" class="nav-link">
                 <i class="fa-solid fa-file"></i>
                 <p>
                   &nbsp;&nbsp; Application for Senior Citizen
@@ -265,28 +369,127 @@
               </a>
             </li>
 
+
+ -->
+
+             <li class="nav-item">
+              <a href="upload_senior_documents.php?household_Id=<?php  echo $id; ?>" class="nav-link">
+                <i class="fa-solid fa-file"></i>
+                <p>
+                  &nbsp;&nbsp; Upload files
+                </p>
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+            <a href="#" class="nav-link text-light">
+              <i class="fa-solid fa-file"></i>
+              <p>&nbsp;&nbsp; View uploaded documents<i class="fas fa-angle-left right"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="view_uploaded_Birth_certificate.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-certificate"></i>
+                  <p>&nbsp;&nbsp; Birth Certificate</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="view_uploaded_Marriage_contract.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-file-contract"></i>
+                  <p>&nbsp;&nbsp; Marriage contract</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="view_uploaded_Valid_Id.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-id-card-clip"></i>
+                  <p>&nbsp;&nbsp; Valid ID</p>
+                </a>
+              </li>
+             
+            </ul>
+          </li>
+
+
+
+
+
           <?php else: ?>
 
             <li class="nav-header">FILE UPLOAD</li>
-            <li class="nav-item">
-              <a href="apply_pwd.php?household_Id=<?php  echo $id; ?>" class="nav-link">
+            <!-- <li class="nav-item">
+              <a href="apply_pwd.php?household_Id=<?php // echo $id; ?>" class="nav-link">
                 <i class="fa-solid fa-file"></i>
                 <p>
                   &nbsp;&nbsp; Application for PWD
                 </p>
               </a>
             </li>
+ -->
+            <li class="nav-item">
+              <a href="upload_PWD_documents.php?household_Id=<?php  echo $id; ?>" class="nav-link">
+                <i class="fa-solid fa-file"></i>
+                <p>
+                  &nbsp;&nbsp; Upload files
+                </p>
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+            <a href="#" class="nav-link text-light">
+              <i class="fa-solid fa-file"></i>
+              <p>&nbsp;&nbsp; View uploaded documents<i class="fas fa-angle-left right"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="view_uploaded_Certification_of_Disability.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-certificate"></i>
+                  <p>&nbsp;&nbsp; Copy Certification of Disability (MHO)</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="view_uploaded_Blood_Type.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-id-card-clip"></i>
+                  <p>&nbsp;&nbsp; Copy Blood Type (MHO)</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="view_uploaded_Body_Picture.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-certificate"></i>
+                  <p>&nbsp;&nbsp; Copy Whole Body Picture</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="view_uploaded_ID_Picture.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-id-card-clip"></i>
+                  <p>&nbsp;&nbsp; Copy 2x2 ID Picture</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="view_uploaded_Copy_Birth_Certificate.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link text-light">
+                  <i class="fa-solid fa-certificate"></i>
+                  <p>&nbsp;&nbsp; Copy Birth Certificate</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+
+
+
+
           <?php endif; ?>
 
 
-          <li class="nav-item">
-              <a href="view_uploaded_Id.php?household_Id=<?php echo $row['household_Id']; ?>" class="nav-link">
+          <!-- <li class="nav-item">
+              <a href="view_uploaded_Id.php?household_Id=<?php //echo $row['household_Id']; ?>" class="nav-link">
                 <i class="fa-solid fa-eye"></i>
                 <p>
                   &nbsp;&nbsp; View Uploaded ID
                 </p>
               </a>
-            </li>
+            </li> -->
 
 
           <li class="nav-header">SETTINGS</li>
@@ -295,6 +498,17 @@
               <i class="fa-solid fa-key"></i>
               <p>
                 &nbsp;&nbsp; Settings and Privacy
+              </p>
+            </a>
+          </li>
+          
+
+<!-- 
+          <li class="nav-item">
+            <a href="delete_account.php?household_Id=<?php  echo $id; ?>" class="nav-link">
+              <i class="fa-solid fa-trash-can"></i>
+              <p>
+                &nbsp;&nbsp; Delete Account
               </p>
             </a>
           </li>
@@ -317,7 +531,7 @@
 
           
 
-
+          <li class="nav-header">EXIT</li>
           <li class="nav-item">
             <a href="" data-toggle="modal" data-target="#logoutmodal" class="nav-link">
               <i class="fa-solid fa-power-off"></i>
@@ -325,7 +539,7 @@
                 &nbsp; Logout
               </p>
             </a>
-          </li>
+          </li> -->
         
         </ul>
       </nav>

@@ -241,45 +241,54 @@
             </a>
           </li>
 
+
+
+          <li class="nav-item">
+            <a href="archived_records.php" class="nav-link">
+              <i class="fa-solid fa-box-archive"></i>
+              <p>&nbsp;&nbsp; Archived records</p>
+            </a>
+          </li>
+
           
-          <li class="nav-header">USERS</li>
+          <!-- <li class="nav-header">USERS</li>
            <?php
-            $admin = mysqli_query($conn, "SELECT admin_Id from admin");
-            $row_admin = mysqli_num_rows($admin);
+            // $admin = mysqli_query($conn, "SELECT admin_Id from admin");
+            // $row_admin = mysqli_num_rows($admin);
            ?>
           <li class="nav-item">
             <a href="admin.php" class="nav-link">
               <i class="fa-solid fa-user-secret"></i>
               <p>
                 &nbsp;&nbsp; Administrators
-                <span class="badge badge-primary right"><?php echo $row_admin;  ?></span>
+                <span class="badge badge-primary right"><?php //echo $row_admin;  ?></span>
               </p>
             </a>
-          </li>
+          </li> -->
 
 
          
 
           
-          <li class="nav-item">
+        <!--   <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="fa-solid fa-list"></i>
               <p>
-                &nbsp; Record
+                &nbsp; Report
                 <i class="fas fa-angle-left right"></i>
               </p>
-            </a>
-            <ul class="nav nav-treeview">
+            </a> -->
+           <!--  <ul class="nav nav-treeview">
                <?php
-                  $users = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration like 'Solo Parent,'");
-                  $row_users = mysqli_num_rows($users);
+                  // $users = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration like 'Solo Parent,'");
+                  // $row_users = mysqli_num_rows($users);
                  ?>
                 <li class="nav-item">
                   <a href="solo_parent.php" class="nav-link">
                     <i class="fa-solid fa-user"></i>
                     <p>
                       &nbsp; Solo Parent
-                      <span class="badge badge-info right"><?php echo $row_users;  ?></span>
+                      <span class="badge badge-info right"><?php //echo $row_users;  ?></span>
                     </p>
                   </a>
                 </li>
@@ -287,15 +296,15 @@
 
             <ul class="nav nav-treeview">
                <?php
-                  $users = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration like 'PWD,'");
-                  $row_users = mysqli_num_rows($users);
+                  // $users = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration like 'PWD,'");
+                  // $row_users = mysqli_num_rows($users);
                  ?>
                 <li class="nav-item">
                   <a href="pwd.php" class="nav-link">
                     <i class="fa-solid fa-user"></i>
                     <p>
                       &nbsp; PWD
-                      <span class="badge badge-warning right"><?php echo $row_users;  ?></span>
+                      <span class="badge badge-warning right"><?php //echo $row_users;  ?></span>
                     </p>
                   </a>
                 </li>
@@ -303,24 +312,32 @@
 
             <ul class="nav nav-treeview">
                <?php
-                  $users = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration like 'Senior Citizens,'");
-                  $row_users = mysqli_num_rows($users);
+                  // $users = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration like 'Senior Citizens,'");
+                  // $row_users = mysqli_num_rows($users);
                  ?>
                 <li class="nav-item">
                   <a href="senior_citizen.php" class="nav-link">
                     <i class="fa-solid fa-person-cane"></i>
                     <p>
                       &nbsp; Senior Citizens
-                      <span class="badge badge-danger right"><?php echo $row_users;  ?></span>
+                      <span class="badge badge-danger right"><?php //echo $row_users;  ?></span>
                     </p>
                   </a>
                 </li>
-            </ul>
-          </li>
+            </ul> -->
+          <!-- </li> -->
 
 
 
           <li class="nav-header">SETTINGS</li>
+           <li class="nav-item">
+            <a href="admin.php" class="nav-link">
+              <i class="fa-solid fa-user-secret"></i>
+              <p>
+                &nbsp;&nbsp; Administrators
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="settings.php" class="nav-link">
               <i class="fa-solid fa-key"></i>
@@ -332,7 +349,7 @@
           
 
 
-          <li class="nav-header">SECURITY</li>
+    <!--       <li class="nav-header">SECURITY</li>
           <li class="nav-item">
             <a href="changepassword.php" class="nav-link">
               <i class="fa-solid fa-key"></i>
@@ -341,11 +358,11 @@
               </p>
             </a>
           </li>
+ -->
 
 
 
-
-          <li class="nav-header">PROFILE</li>
+          <!-- <li class="nav-header">PROFILE</li>
           <li class="nav-item">
             <a href="about_me.php" class="nav-link">
               <i class="fa-solid fa-user"></i>
@@ -353,11 +370,11 @@
                 &nbsp;&nbsp; About me
               </p>
             </a>
-          </li>
+          </li> -->
           
           
-
-
+<!-- 
+          <li class="nav-header">EXIT</li>
           <li class="nav-item">
             <a href="" data-toggle="modal" data-target="#logoutmodal" class="nav-link">
               <i class="fa-solid fa-power-off"></i>
@@ -365,7 +382,7 @@
                 &nbsp; Logout
               </p>
             </a>
-          </li>
+          </li> -->
         
         </ul>
       </nav>

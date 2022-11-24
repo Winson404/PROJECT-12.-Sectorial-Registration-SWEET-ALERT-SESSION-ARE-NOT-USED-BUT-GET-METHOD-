@@ -88,22 +88,39 @@
     	if(mysqli_num_rows($check_old_password) === 1 ) {
     				// COMPARE BOTH NEW AND CONFIRM PASSWORD
 		    		if($password != $cpassword) {
-		    				$_SESSION['exists']  = "Password does not matched. Please try again";
-		          			header("Location: changepassword.php");
+		    						// $_SESSION['exists']  = "Password does not matched. Please try again";
+		          // 			header("Location: changepassword.php");
+		          			$_SESSION['message'] = "Password does not matched.";
+										$_SESSION['text']    = "Please try again";
+										$_SESSION['status']  = "error";
+										header('Location: settings.php');
 		    		} else {
 			    			$update_password = mysqli_query($conn, "UPDATE admin SET password='$password' WHERE admin_Id='$admin_Id' ");
 
 			    			if($update_password) {
-			    					$_SESSION['success']  = "Password has been changed.";
-		          					header("Location: changepassword.php");
+			    							// $_SESSION['success']  = "Password has been changed.";
+		          		// 			header("Location: changepassword.php");
+		          					$_SESSION['message'] = "Password has been changed.";
+												$_SESSION['text']    = "Successfully changed";
+												$_SESSION['status']  = "success";
+												header('Location: settings.php');
+
 			    			} else {
-			    					$_SESSION['exists']  = "Something went wrong while changing the password.";
-			          				header("Location: changepassword.php");
+				    							// $_SESSION['exists']  = "Something went wrong while changing the password.";
+				          	// 			header("Location: changepassword.php");
+			          					$_SESSION['message'] = "Something went wrong while changing the password.";
+													$_SESSION['text']    = "Please try again.";
+													$_SESSION['status']  = "error";
+													header('Location: settings.php');
 			    			}
 		    		}
     	} else {
-    		$_SESSION['exists']  = "Old password is incorrect.";
-            header("Location: changepassword.php");
+    				// $_SESSION['exists']  = "Old password is incorrect.";
+        //     header("Location: changepassword.php");
+            $_SESSION['message'] = "Old password is incorrect.";
+						$_SESSION['text']    = "Please try again.";
+						$_SESSION['status']  = "error";
+						header('Location: settings.php');
     	}
 
     }

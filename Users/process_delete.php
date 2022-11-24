@@ -19,4 +19,22 @@
 	}
 
 
+
+
+	// DELETE MSG
+	if(isset($_POST['delete_account'])) {
+
+		$household_Id   = $_POST['household_Id'];
+
+		$delete = mysqli_query($conn, "DELETE FROM household_head WHERE household_Id='$household_Id'");
+		if($delete) {
+			
+			header ('Location: ../logout.php');
+
+		} else {
+			$_SESSION['exists'] = "Something went wrong while deleting the message. Please try again.";
+            header('Location: delete_account.php?household_Id='.$household_Id.'');   
+		}
+	}
+
 ?>

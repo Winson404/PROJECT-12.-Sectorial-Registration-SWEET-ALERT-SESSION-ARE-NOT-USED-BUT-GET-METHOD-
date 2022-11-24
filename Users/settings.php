@@ -1,5 +1,5 @@
-<title>Account security | Template System</title>
-<?php include 'navbar.php'; ?>
+<title>Account security | </title>
+<?php include 'navbar.php';  ?>
 
 <?php 
 
@@ -7,6 +7,21 @@
     $r_f = mysqli_fetch_array($f);
 
 ?>
+
+<script src="../sweetalert2.min.js"></script>
+<?php if(isset($_SESSION['message'])) { ?>
+
+    <script>
+      swal ({
+        title: '<?php echo $_SESSION['message']; ?>',
+        text: "<?php echo $_SESSION['text']; ?>",
+        icon: "<?php echo $_SESSION['status']; ?>",
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: "Okay",
+        timer: 3000
+      });
+    </script>
+<?php unset($_SESSION['message']); unset($_SESSION['text']); unset($_SESSION['status']); } ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -70,6 +85,24 @@
                       <p style="font-weight: normal;"><?php echo $r_f['dob']; ?></p>
                     </th>
                     <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#dob<?php echo $id; ?>">Edit</button></td>
+                  </tr>
+                  <tr>
+                    <th>Change password
+                      <p style="font-weight: normal;"></p>
+                    </th>
+                    <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#password<?php echo $id; ?>">Edit</button></td>
+                  </tr>
+                   <tr>
+                    <th>Delete account
+                      <p style="font-weight: normal;"></p>
+                    </th>
+                    <td><a href="delete_account.php?household_Id=<?php  echo $id; ?>" class="btn btn-success">Delete account</a></td>
+                  </tr>
+                  <tr>
+                    <th>Logout
+                      <p style="font-weight: normal;"></p>
+                    </th>
+                    <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#logoutmodal">Exit</button></td>
                   </tr>
                 </table>
             </div>

@@ -42,7 +42,7 @@
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">Total applicants</a>
+              <a href="pending_applicants.php" class="small-box-footer">Total applicants</a>
             </div>
           </div>
           <!-- ./col -->
@@ -81,7 +81,7 @@
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">Total applicants</a>
+              <a href="pending_applicants_renew.php" class="small-box-footer">Total applicants</a>
             </div>
           </div>
 
@@ -148,7 +148,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <?php
-                  $senior = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration LIKE 'Senior Citizen,'");
+                  $senior = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration LIKE 'Senior Citizens,'");
                   $row_senior = mysqli_num_rows($senior);
                  ?>
                 <h3><?php echo $row_senior; ?></h3>

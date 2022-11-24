@@ -1,6 +1,4 @@
 <?php 
-
-
 	session_start();
 	include 'config.php';
 
@@ -14,7 +12,7 @@
 			$password               = md5($_POST['password']);
 			$cpassword              = md5($_POST['cpassword']);
 			$sectorial_registration = $_POST['sectorial_registration'];
-		  $applicationtype       	= $_POST['applicationtype'];
+		   $applicationtype       	= $_POST['applicationtype'];
 			// $senior                 = $_POST['senior'];
 			$causeofbeingsoloparent = $_POST['causeofbeingsoloparent'];
 			$typeofdisabilities     = $_POST['typeofdisabilities'];

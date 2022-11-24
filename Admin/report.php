@@ -40,13 +40,19 @@
 
 
                 <div class="col-lg-6 col-6">
-                  <div class="small-box bg-info">
+                  <div class="small-box bg-info p-3">
+                    <a href="senior_citizen.php">
                     <div class="inner">
+                      
                       <?php
-                        $old_male = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration LIKE 'Senior Citizen,' AND gender='Male'");
+
+                        $a = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration LIKE 'Senior Citizens,' AND account_status='Approved'");
+                        $b = mysqli_num_rows($a);
+
+                        $old_male = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration LIKE 'Senior Citizens,' AND gender='Male'");
                         $row_old_male = mysqli_num_rows($old_male);
 
-                        $old_female = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration LIKE 'Senior Citizen,' AND gender='Female'");
+                        $old_female = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration LIKE 'Senior Citizens,' AND gender='Female'");
                         $row_old_female = mysqli_num_rows($old_female);
 
                         $total = 7147;
@@ -54,23 +60,33 @@
                         $female = $row_old_female/$total*100;
 
                        ?>
+                     
                       <span style="font-size: 15px;">Updated list as of March 31, 2022</span>
                       <h4><b>SENIOR CITIZENS</b></h4>
                       <hr>
                       <p><b>Male:</b> <?php echo number_format((float)$male, 2, '.', ''); ?> %</p>
                           <p><b>Female:</b> <?php echo number_format((float)$female, 2, '.', ''); ?> %</p>
-                          <p><b>Total:</b> <?php echo $total; ?></p>
+                          <p><b>Total:</b> <?php echo $b; ?></p>
                     </div>
                     <div class="icon">
                       <i class="ion ion-person-add"></i>
                     </div>
+                    </a>
                   </div>
                 </div>
 
+
+
+
                 <div class="col-lg-6 col-6">
-                  <div class="small-box bg-warning">
+                  <div class="small-box bg-warning p-3">
+                    <a href="solo_parent.php">
                     <div class="inner">
                       <?php
+
+                        $c = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration LIKE 'Solo Parent,' AND account_status='Approved'");
+                        $d = mysqli_num_rows($c);
+
                         $old_male = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration LIKE 'Solo Parent,' AND gender='Male'");
                         $row_old_male = mysqli_num_rows($old_male);
 
@@ -87,19 +103,28 @@
                       <hr>
                       <p><b>Male:</b> <?php echo number_format((float)$male, 2, '.', ''); ?> %</p>
                           <p><b>Female:</b> <?php echo number_format((float)$female, 2, '.', ''); ?> %</p>
-                          <p><b>Total:</b> <?php echo $total; ?></p>
+                          <p><b>Total:</b> <?php echo $d; ?></p>
                     </div>
                     <div class="icon">
                       <i class="ion ion-person-add"></i>
                     </div>
+                    </a>
                   </div>
                 </div>
 
 
+
+
+
                 <div class="col-lg-6 col-6">
-                  <div class="small-box bg-success">
+                  <div class="small-box bg-success p-3">
+                    <a href="pwd.php">
                     <div class="inner">
                       <?php
+
+                        $e = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration LIKE 'PWD,' AND account_status='Approved'");
+                        $f = mysqli_num_rows($e);
+
                         $old_male = mysqli_query($conn, "SELECT household_Id from household_head WHERE sectorial_registration LIKE 'PWD,' AND gender='Male'");
                         $row_old_male = mysqli_num_rows($old_male);
 
@@ -117,11 +142,12 @@
                       <p><b></b></p>
                       <p><b>Male:</b> <?php echo number_format((float)$male, 2, '.', ''); ?> %</p>
                           <p><b>Female:</b> <?php echo number_format((float)$female, 2, '.', ''); ?> %</p>
-                          <p><b>Total:</b> <?php echo $total; ?></p>
+                          <p><b>Total:</b> <?php echo $f; ?></p>
                     </div>
                     <div class="icon">
                       <i class="ion ion-person-add"></i>
                     </div>
+                    </a>
                   </div>
                 </div>
 

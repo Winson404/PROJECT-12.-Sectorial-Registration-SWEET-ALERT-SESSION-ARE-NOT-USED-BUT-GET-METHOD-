@@ -71,6 +71,24 @@
                     </th>
                     <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#dob<?php echo $id; ?>">Edit</button></td>
                   </tr>
+                   <tr>
+                    <th>Change password
+                      <p style="font-weight: normal;"></p>
+                    </th>
+                    <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#password<?php echo $id; ?>">Edit</button></td>
+                  </tr>
+                   <tr>
+                    <th>About me <br>
+                      
+                    </th>
+                    <td><a class="btn btn-success"  href="about_me.php">Profile</a></td>
+                  </tr>
+                   <tr>
+                    <th>Logout
+                      <p style="font-weight: normal;"></p>
+                    </th>
+                    <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#logoutmodal">Exit</button></td>
+                  </tr>
                 </table>
             </div>
             <!-- /.card -->
@@ -85,7 +103,7 @@
     </section>
     <!-- /.content -->
   </div>
-    <?php include 'settings_edit.php'; ?>
+    <?php include 'settings_edit.php'; include 'sweetalert_messages.php'; ?>
 
   <?php include 'footer.php'; ?>
  
